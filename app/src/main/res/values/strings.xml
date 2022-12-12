@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Android Intermediate</string>
+    <string name="not_empty">Format Email tidak valid</string>
+    <string name="password_error">Password minimal 6 karakter</string>
+    <string name="add_image">add_image</string>
+    <string name="created_at">Uploaded at %1$s</string>
+    <string name="Tidak_diizinkan">Tidak mendapatkan permission.</string>
+    <string name="Berhasil">Berhasil</string>
+    <string name="Masukkan_gambar">Silahkan masukkan gambar terlebih dahulu.</string>
+    <string name="Gagal_instance">Gagal instance retrofit</string>
+    <string name="photo">photo</string>
+    <string name="input_email">Masukkan email</string>
+    <string name="input_password">Masukkan password</string>
+    <string name="token_deleted">token dihapus</string>
+    <string name="input_name">Masukkan nama</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="upload">Upload</string>
+    <string name="preview">preview</string>
+    <string name="nama">Nama</string>
+    <string name="image">image</string>
+    <string name="date">date</string>
+    <string name="logo">logo</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="belum_register">Belum punya akun ?, Register</string>
+    <string name="register">Register</string>
+    <string name="sudah_register">Sudah punya akun ?, Login</string>
+    <string name="story_image">story image</string>
+</resources>
