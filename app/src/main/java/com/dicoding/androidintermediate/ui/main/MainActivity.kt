@@ -16,6 +16,7 @@ import com.dicoding.androidintermediate.R
 import com.dicoding.androidintermediate.databinding.ActivityMainBinding
 import com.dicoding.androidintermediate.ui.addstory.AddStoryActivity
 import com.dicoding.androidintermediate.ui.login.LoginActivity
+import com.dicoding.androidintermediate.ui.map.MapActivity
 import com.dicoding.androidintermediate.util.LoginPreference
 import com.dicoding.androidintermediate.util.StoryAdapter
 
@@ -103,6 +104,9 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_setting -> {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            }
+            R.id.menu_maps -> {
+                startActivity(Intent(this, MapActivity::class.java))
             }
             else -> {return super.onOptionsItemSelected(item)}
         }

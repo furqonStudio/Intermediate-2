@@ -64,7 +64,9 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="false" />
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBQ5Tky0z8tSwo6jyTjn3fqKxjfy3zKu7Q"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.dicoding.androidintermediate"
@@ -72,9 +74,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"
-                android:value="AIzaSyBQ5Tky0z8tSwo6jyTjn3fqKxjfy3zKu7Q"
-                />
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 
