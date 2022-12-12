@@ -23,7 +23,10 @@ interface Api {
 
     @GET("stories")
     fun getStories(
-        @Header("Authorization") token: String
+        @Header("Authorization") token: String,
+        @Query("location") location: Int = 0,
+        @Query("page") page: Int?,
+        @Query("size") size: Int?,
     ): Call<StoryResponse>
 
     @Multipart
@@ -32,5 +35,7 @@ interface Api {
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody? = null,
+        @Part("lon") long: RequestBody? = null,
     ): Call<RegisterResponse>
 }
