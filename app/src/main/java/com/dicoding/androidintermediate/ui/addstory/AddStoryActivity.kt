@@ -151,8 +151,8 @@ class AddStoryActivity : AppCompatActivity() {
             )
 
             val token = "Bearer ${mLoginPreference.getUser().token}"
-            val service = ApiConfig.getApiService().addStory(token, imageMultipart, description)
-            service.enqueue(object : Callback<RegisterResponse> {
+            ApiConfig.getApiService().addStory(token, imageMultipart, description)
+            (object : Callback<RegisterResponse> {
                 override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                     if (response.isSuccessful) {
                         val responseBody =response.body()

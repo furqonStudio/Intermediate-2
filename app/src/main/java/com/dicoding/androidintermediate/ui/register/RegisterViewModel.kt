@@ -20,7 +20,7 @@ class RegisterViewModel : ViewModel() {
     fun registerUser(name: String, email: String,password: String) {
         _isLoading.value = true
         ApiConfig.getApiService().register(RegisterRequest(name, email, password))
-            .enqueue(object : Callback<RegisterResponse> {
+            (object : Callback<RegisterResponse> {
                 override fun onResponse(
                     call: Call<RegisterResponse>,
                     response: Response<RegisterResponse>

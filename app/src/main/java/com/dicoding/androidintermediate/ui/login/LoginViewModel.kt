@@ -8,6 +8,8 @@ import com.dicoding.androidintermediate.api.ApiConfig
 import com.dicoding.androidintermediate.request.LoginRequest
 import com.dicoding.androidintermediate.response.LoginResponse
 import com.dicoding.androidintermediate.request.LoginResult
+import com.dicoding.androidintermediate.request.RegisterRequest
+import com.dicoding.androidintermediate.response.RegisterResponse
 import com.dicoding.androidintermediate.util.RETROFIT_TAG
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,9 +28,8 @@ class LoginViewModel : ViewModel() {
 
     fun loginUser(email: String, password: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().loginUser(LoginRequest(email, password))
-
-        client.enqueue(object : Callback<LoginResponse> {
+        ApiConfig.getApiService().loginUser(LoginRequest(email, password))
+        (object : Callback<LoginResponse> {
             override fun onResponse(
                 call: Call<LoginResponse>,
                 response: Response<LoginResponse>
@@ -53,6 +54,7 @@ class LoginViewModel : ViewModel() {
             }
 
         })
+
     }
 
 }

@@ -1,8 +1,12 @@
 package com.dicoding.androidintermediate.response
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "story")
 data class Story (
+    @PrimaryKey
     @SerializedName("id")
     val id: String,
     @SerializedName("name")

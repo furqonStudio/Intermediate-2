@@ -14,12 +14,12 @@ interface Api {
     @POST("register")
     fun register(
         @Body request: RegisterRequest
-    ): Call<RegisterResponse>
+    ): RegisterResponse
 
     @POST("login")
     fun loginUser(
         @Body loginRequest: LoginRequest
-    ): Call<LoginResponse>
+    ): LoginResponse
 
     @GET("stories")
     fun getStories(
@@ -27,7 +27,7 @@ interface Api {
         @Query("location") location: Int = 0,
         @Query("page") page: Int?,
         @Query("size") size: Int?,
-    ): Call<StoryResponse>
+    ): StoryResponse
 
     @Multipart
     @POST("stories")
@@ -37,5 +37,5 @@ interface Api {
         @Part("description") description: RequestBody,
         @Part("lat") lat: RequestBody? = null,
         @Part("lon") long: RequestBody? = null,
-    ): Call<RegisterResponse>
+    ): RegisterResponse
 }

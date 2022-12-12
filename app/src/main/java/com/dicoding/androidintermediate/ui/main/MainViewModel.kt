@@ -23,7 +23,7 @@ class MainViewModel : ViewModel(){
     fun getAllStories(token: String) {
         _isLoading.value = true
         ApiConfig.getApiService().getStories("Bearer $token", 1, null, null)
-            .enqueue(object : Callback<StoryResponse> {
+            (object : Callback<StoryResponse> {
                 override fun onResponse(
                     call: Call<StoryResponse>,
                     response: Response<StoryResponse>

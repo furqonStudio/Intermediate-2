@@ -29,4 +29,5 @@
     <string name="register">Register</string>
     <string name="sudah_register">Sudah punya akun ?, Login</string>
     <string name="story_image">story image</string>
+    <string name="retry">Coba lagi</string>
 </resources>

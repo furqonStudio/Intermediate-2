@@ -17,6 +17,7 @@ import com.dicoding.androidintermediate.databinding.ActivityMainBinding
 import com.dicoding.androidintermediate.ui.addstory.AddStoryActivity
 import com.dicoding.androidintermediate.ui.login.LoginActivity
 import com.dicoding.androidintermediate.ui.map.MapActivity
+import com.dicoding.androidintermediate.util.LoadingStateAdapter
 import com.dicoding.androidintermediate.util.LoginPreference
 import com.dicoding.androidintermediate.util.StoryAdapter
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "Home"
 
         mLoginPreference = LoginPreference(this)
-        adapter = StoryAdapter()
+
 
         setRecyclerView()
         setupViewModel()
@@ -75,10 +76,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerView() {
-        binding.apply {
-            rvStory.layoutManager = LinearLayoutManager(this@MainActivity)
-            rvStory.setHasFixedSize(true)
-            rvStory.adapter = adapter
+        adapter = StoryAdapter()
+
+        adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+
+        binding.rvStory.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            setHasFixedSize(true)
+            adapter = adapter
 
         }
     }
