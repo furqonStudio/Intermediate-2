@@ -67,7 +67,10 @@ class StoryAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listStory[position])
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(data)
+        }
     }
 
     override fun getItemCount(): Int = listStory.size

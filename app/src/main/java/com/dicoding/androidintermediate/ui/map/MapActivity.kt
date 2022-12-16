@@ -1,21 +1,27 @@
 package com.dicoding.androidintermediate.ui.map
 
 import android.Manifest
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.dicoding.androidintermediate.R
 import com.dicoding.androidintermediate.databinding.ActivityMapBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityMapBinding
     private lateinit var mMap: GoogleMap
+    private val viewModel by viewModels<MapsViewModel>()
+    private lateinit var pref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

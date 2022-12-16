@@ -19,7 +19,7 @@ interface Api {
     @POST("login")
     fun loginUser(
         @Body loginRequest: LoginRequest
-    ): LoginResponse
+    ): Call<LoginResponse>
 
     @GET("stories")
     fun getStories(

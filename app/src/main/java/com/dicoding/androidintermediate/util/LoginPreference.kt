@@ -32,4 +32,6 @@ class LoginPreference (context: Context) {
             preferences.getBoolean(LOGIN_STATE, false)
         )
     }
+
+    fun getString(key: String, default: String = ""): String = preferences.getString(key, "") ?: default
 }

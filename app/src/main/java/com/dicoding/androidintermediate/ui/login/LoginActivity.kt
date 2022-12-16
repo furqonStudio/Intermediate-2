@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -20,11 +21,13 @@ import com.dicoding.androidintermediate.ui.main.MainActivity
 import com.dicoding.androidintermediate.ui.register.RegisterActivity
 import com.dicoding.androidintermediate.util.LoginPreference
 import com.dicoding.androidintermediate.util.SHARED_PREFERENCES
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel by viewModels<LoginViewModel>()
     private lateinit var pref: SharedPreferences
     private lateinit var userPref: LoginPreference
 
@@ -47,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+//        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
         viewModel.isLoading.observe(this) { showLoading(it) }
         viewModel.toastMessage.observe(this) {

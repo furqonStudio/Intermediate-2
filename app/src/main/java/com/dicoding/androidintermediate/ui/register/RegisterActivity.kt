@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.dicoding.androidintermediate.R
 import com.dicoding.androidintermediate.databinding.ActivityRegisterBinding
 import com.dicoding.androidintermediate.ui.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var viewModel: RegisterViewModel

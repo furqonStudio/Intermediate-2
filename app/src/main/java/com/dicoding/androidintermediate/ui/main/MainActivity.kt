@@ -8,24 +8,34 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.androidintermediate.R
 import com.dicoding.androidintermediate.databinding.ActivityMainBinding
+import com.dicoding.androidintermediate.response.Story
 import com.dicoding.androidintermediate.ui.addstory.AddStoryActivity
 import com.dicoding.androidintermediate.ui.login.LoginActivity
 import com.dicoding.androidintermediate.ui.map.MapActivity
 import com.dicoding.androidintermediate.util.LoadingStateAdapter
 import com.dicoding.androidintermediate.util.LoginPreference
+import com.dicoding.androidintermediate.util.PREF_TOKEN
 import com.dicoding.androidintermediate.util.StoryAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: MainViewModel
+//    private lateinit var viewModel: MainViewModel
+private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var mLoginPreference: LoginPreference
     private lateinit var adapter: StoryAdapter
+    private lateinit var recyclerView: RecyclerView
+    private var token: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +43,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.title = "Home"
 
+//        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
         mLoginPreference = LoginPreference(this)
 
+        val prefUtils = LoginPreference(this)
+        token = prefUtils.getString(PREF_TOKEN)
 
+        Log.d("Muncul", "Jalan")
         setRecyclerView()
         setupViewModel()
         validate()
@@ -64,31 +79,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        viewModel.getAllStories(mLoginPreference.getUser().token)
+        Log.d("Muncul", "Keluar")
+
+
+
+
+//        viewModel.getAllStories(mLoginPreference.getUser().token)
         viewModel.listStory.observe(this) {
             if (it != null) {
                 adapter.setData(it)
             }
         }
+
+        viewModel.getAllStories(token).observe(this){
+            adapter.submitData(lifecycle, it)
+        }
+
         viewModel.isLoading.observe(this) { showLoading(it) }
     }
 
     private fun setRecyclerView() {
         adapter = StoryAdapter()
-
-        adapter.withLoadStateFooter(
-            footer = LoadingStateAdapter {
-                adapter.retry()
-            }
-        )
-
-        binding.rvStory.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            setHasFixedSize(true)
-            adapter = adapter
-
+        binding.apply {
+            rvStory.layoutManager = LinearLayoutManager(this@MainActivity)
+            rvStory.setHasFixedSize(true)
+            rvStory.adapter = adapter.withLoadStateFooter(
+                footer = LoadingStateAdapter {
+                    adapter.retry()
+                }
+            )
         }
     }
 
